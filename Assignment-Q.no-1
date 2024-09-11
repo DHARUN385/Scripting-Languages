@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Course Registration System</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .container { max-width: 800px; margin: auto; }
+        .course { border: 1px solid #ddd; padding: 15px; margin-bottom: 10px; }
+        .course.available { background-color: #e0ffe0; }
+        .course.unavailable { background-color: #ffe0e0; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Course Registration System</h1>
+        
+        <!-- Registration Section -->
+        <h2>Register for a Course</h2>
+        <form id="registrationForm">
+            <label for="courseId">Course ID:</label>
+            <input type="text" id="courseId" name="courseId" required>
+            <button type="button" onclick="registerCourse()">Register</button>
+        </form>
+        
+        <!-- Course List Section -->
+        <h2>Available Courses</h2>
+        <div id="courseList"></div>
+    </div>
+
+    <script>
+        // Sample data for courses
+        const courses = [
+            { id: 'CS101', name: 'Introduction to Computer Science', description: 'Learn the basics of computer science.', available: true },
+            { id: 'CS102', name: 'Data Structures', description: 'Understand data structures and algorithms.', available: false },
+            // Add more courses as needed
+        ];
+
+        function displayCourses() {
+            const courseListDiv = document.getElementById('courseList');
+            courseListDiv.innerHTML = '';
+
+            courses.forEach(course => {
+                const courseDiv = document.createElement('div');
+                courseDiv.className = `course ${course.available ? 'available' : 'unavailable'}`;
+                courseDiv.innerHTML = `<h3>${course.name}</h3><p>${course.description}</p>`;
+                courseListDiv.appendChild(courseDiv);
+            });
+        }
+
+        function registerCourse() {
+            const courseId = document.getElementById('courseId').value.trim();
+            const course = courses.find(c => c.id === courseId);
+
+            if (course && course.available) {
+                alert('Successfully registered for ' + course.name);
+            } else {
+                alert('Course not available or does not exist.');
+            }
+        }
+
+        // Initialize course list on page load
+        displayCourses();
+    </script>
+</body>
+</html>
