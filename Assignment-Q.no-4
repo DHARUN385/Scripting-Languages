@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Design Portfolio</title>
+    <style>
+        /* Embedded CSS */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f4f4f4;
+        }
+
+        .container {
+            text-align: center;
+        }
+
+        .gallery {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+
+        .gallery-item {
+            width: 150px;
+            height: 100px;
+            object-fit: cover;
+            margin: 5px;
+            transition: transform 0.5s ease, opacity 0.5s ease;
+            opacity: 0.6;
+        }
+
+        .gallery-item.active {
+            opacity: 1;
+            transform: scale(1.2);
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+    </style>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        // Embedded JavaScript (jQuery)
+        $(document).ready(function() {
+            $('#animateButton').click(function() {
+                // Remove 'active' class from all images
+                $('.gallery-item').removeClass('active');
+                
+                // Add 'active' class to the first image for demonstration
+                // You can modify this logic to apply the effect to a specific image
+                $('.gallery-item').first().addClass('active');
+            });
+        });
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h1>Design Portfolio</h1>
+        
+        <!-- Gallery Section -->
+        <div class="gallery">
+            <img src="https://via.placeholder.com/150x100?text=Image+1" alt="Image 1" class="gallery-item">
+            <img src="https://via.placeholder.com/150x100?text=Image+2" alt="Image 2" class="gallery-item">
+            <img src="https://via.placeholder.com/150x100?text=Image+3" alt="Image 3" class="gallery-item">
+            <!-- Add more images as needed -->
+        </div>
+        
+        <!-- Button to Trigger Animation -->
+        <button id="animateButton">Animate Image</button>
+    </div>
+</body>
+</html>
