@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Number Validation</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .container { max-width: 400px; margin: auto; }
+        input[type="text"] { width: 100px; }
+        .error { color: red; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Four-Digit Number Validation</h1>
+        <label for="number">Enter a four-digit number:</label>
+        <input type="text" id="number" maxlength="4">
+        <button type="button" onclick="validateNumber()">Validate</button>
+        <p id="result" class="error"></p>
+    </div>
+
+    <script>
+        function validateNumber() {
+            const input = document.getElementById('number').value.trim();
+            const result = document.getElementById('result');
+            
+            // Clear previous result
+            result.textContent = '';
+
+            // Check if input is a four-digit number
+            if (!/^\d{4}$/.test(input)) {
+                result.textContent = 'Please enter exactly four digits.';
+                return;
+            }
+
+            // Check if the first digit is not zero
+            if (input[0] === '0') {
+                result.textContent = 'The first digit cannot be zero.';
+                return;
+            }
+
+            // Check if digits are in ascending order
+            for (let i = 1; i < input.length; i++) {
+                if (input[i] <= input[i - 1]) {
+                    result.textContent = 'Digits must be in ascending order.';
+                    return;
+                }
+            }
+
+            result.textContent = 'The number is valid.';
+        }
+    </script>
+</body>
+</html>
